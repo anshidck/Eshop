@@ -21,11 +21,6 @@ function Navbar() {
         <h1 className='text-xl md:text-2xl lg:text-3xl font-bold flex gap-2 text-white'><FaShoppingCart size={30}/> E-SHOP </h1>
         </Link>
       </div>
-      {user && user.isAdmin ?  (
-        <>
-        <Link className='text-white bg-yellow-500 p-2 rounded' to='/admin'>Admin DashBoard</Link>
-        </>
-      ) : ('')}
       <div className=' hidden lg:flex bg-white px-2 rounded gap-3 text-black items-center'>
         <input className='px-4 py-1 outline-none font-bold' type="search" placeholder='Search Product.....' />
         <AiOutlineSearch size={20} color='black'/>

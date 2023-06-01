@@ -1,32 +1,33 @@
-import Products from "./pages/Products";
+import Products from "./pages/user/Products";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import ProductDetails from "./pages/ProductDetails";
+import ProductDetails from "./pages/user/ProductDetails";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
-import Cart from "./pages/Cart";
+import Cart from "./pages/user/Cart";
 import { getTotals } from './features/cart/cartSlice'
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NotFound from "./pages/NotFound";
-import Checkout from "./pages/Checkout";
-import Dashboard from "./pages/Dashboard";
-import AdminProduct from "./pages/AdminProduct";
-import Order from "./pages/Order";
-import User from "./pages/User";
-import CreatePage from "./pages/CreatePage";
-import HomePage from "./pages/HomePage";
-import Profile from "./pages/Profile";
-import Payment from "./pages/Payment";
+import Checkout from "./pages/user/Checkout";
+import Dashboard from "./pages/admin/Dashboard";
+import List from "./pages/admin/List";
+import Order from "./pages/user/Order";
+import User from "./pages/user/User";
+import CreatePage from "./pages/admin/CreatePage";
+import HomePage from "./pages/user/HomePage";
+import Profile from "./pages/user/Profile";
+import Payment from "./pages/user/Payment";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import OrderSuccess from "./pages/OrderSuccess";
+import OrderSuccess from "./pages/user/OrderSuccess";
+import { productColumns, userColumns } from "./datatablesource";
 import { fetchOrder } from "./features/order/orderSlice";
 import { fetchProductsAsync } from "./features/products/productsSlice";
-import FAQPage from "./pages/FaqPage";
+import FAQPage from "./pages/user/FaqPage";
 import Footer from "./components/Footer";
 
 
@@ -72,11 +73,10 @@ function App() {
             <Route path='order' element={<Order />} />
             <Route path='user' element={<User />} />
           </Route>
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path='product' element={<AdminProduct/>}>
-              <Route path="create" element={<CreatePage/>}/>
-            </Route>
-          </Route>
+          <Route path="/admin" element={<Dashboard />}/>
+          <Route path="/products" element={<List columns={productColumns}/>}/>
+          <Route path="/create" element={<CreatePage/>}/>
+          <Route path="/users" element={<List columns={userColumns}/>}/>
           <Route path="*" element={<NotFound />} />
           <Route path="order/success" element={<OrderSuccess/>}/>
         </Routes>
@@ -87,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

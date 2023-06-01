@@ -23,7 +23,11 @@ function Login() {
           toast.error(message)
         } 
         if (isSuccess) {
-          navigate('/')
+          if (user.isAdmin) {
+            navigate('/admin')
+          } else {
+            navigate('/')
+          }
         }
         dispatch(reset())
       },[user, isError, isSuccess, dispatch, navigate, message])
